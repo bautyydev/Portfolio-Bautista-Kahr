@@ -348,19 +348,13 @@ function initLogoSplit() {
     currentX = null;
   }
 
-  wrap.addEventListener('mouseenter', () => {
+  function startReveal() {
     cancelAnim();
     line.style.opacity = '';
     wrap.classList.add('revealed');
-  });
+  }
 
-  wrap.addEventListener('mousemove', e => {
-    cancelAnim();
-    const r = wrap.getBoundingClientRect();
-    update(e.clientX - r.left);
-  });
-
-  wrap.addEventListener('mouseleave', () => {
+  function exitReveal() {
     wrap.classList.remove('revealed');
     cancelAnim();
     if (currentX === null) return;
@@ -389,7 +383,29 @@ function initLogoSplit() {
     }
 
     animFrame = requestAnimationFrame(animate);
+  }
+
+  /* Mouse events */
+  wrap.addEventListener('mouseenter', startReveal);
+  wrap.addEventListener('mousemove', e => {
+    cancelAnim();
+    const r = wrap.getBoundingClientRect();
+    update(e.clientX - r.left);
   });
+  wrap.addEventListener('mouseleave', exitReveal);
+
+  /* Touch events */
+  wrap.addEventListener('touchstart', e => {
+    startReveal();
+    const r = wrap.getBoundingClientRect();
+    update(e.touches[0].clientX - r.left);
+  }, { passive: true });
+  wrap.addEventListener('touchmove', e => {
+    cancelAnim();
+    const r = wrap.getBoundingClientRect();
+    update(e.touches[0].clientX - r.left);
+  }, { passive: true });
+  wrap.addEventListener('touchend', exitReveal);
 }
 
 /* ── Scroll reveal ── */

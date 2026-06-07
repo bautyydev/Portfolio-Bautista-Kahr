@@ -1445,31 +1445,67 @@ body::after {
   .nav-links, .nav-avail, .nav-location { display: none; }
   .nav-burger { display: flex; }
 
-  .hero-bottom { flex-direction: column; gap: 2.5rem; }
+  .hero-bottom { flex-direction: column; gap: 2rem; }
   .hero-left { max-width: 100%; }
-  .hero-right { align-self: flex-start; }
+  .hero-right { align-self: center; }
+
+  .hero-profession { font-size: 0.88rem; padding: 0.5rem 1.1rem; }
 
   .hero-avatar-wrap { width: 160px; height: 160px; }
-  .avatar-inner { font-size: 2.8rem; }
+  .ls-bk { font-size: 2.8rem; }
+  .wd-top { font-size: 1.4rem; }
+  .wd-bot { font-size: 0.44rem; }
   .floating-tag { display: none; }
 
-  .section { padding: 5rem 0; }
+  .section { padding: 4.5rem 0; }
   .container { padding: 0 1.25rem; }
 
-  .about-stats { gap: 1.75rem; }
+  /* Botones — touch targets mínimo 48px */
+  .btn-main, .btn-ghost { min-height: 48px; }
 
+  .about-stats { gap: 1.5rem; flex-wrap: wrap; }
+
+  /* Code card — scroll horizontal en mobile */
+  .code-body { font-size: 0.72rem; overflow-x: auto; }
+  .code-card { overflow: hidden; }
+
+  .contact-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+  .contact-email { font-size: clamp(1rem, 4.5vw, 1.8rem); }
   .contact-links { flex-direction: column; align-items: flex-start; }
+  .contact-links .btn-ghost { width: 100%; justify-content: center; }
 
   .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
 
 @media (max-width: 480px) {
+  .hero-name { font-size: clamp(3rem, 15vw, 4rem); }
+  .hero-profession { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
+  .hero-bio { font-size: 0.92rem; }
+
+  .hero-avatar-wrap { width: 140px; height: 140px; }
+  .ls-bk { font-size: 2.4rem; }
+  .wd-top { font-size: 1.2rem; }
+  .wd-sep { --sep-w: 30px; }
+
   .skills-grid { grid-template-columns: 1fr; }
   .skill-card.sk-featured,
   .skill-card.sk-wide { grid-column: span 1; }
 
-  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .pcard { min-height: 260px; }
+  .pcard-title { font-size: 1.2rem; }
+
+  .about-stats { gap: 1rem; }
+  .astat-num { font-size: 2.2rem; }
+  .astat-suf { font-size: 1.3rem; }
+
+  .section-title { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+  .section { padding: 3.5rem 0; }
+  .container { padding: 0 1rem; }
+
+  .hero-actions { flex-direction: column; align-items: stretch; }
   .btn-main, .btn-ghost { width: 100%; justify-content: center; }
+
+  .contact-title { font-size: clamp(2rem, 10vw, 2.8rem); }
 }
 
 /* ── REDUCED MOTION ── */
