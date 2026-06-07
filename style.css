@@ -1445,15 +1445,17 @@ body::after {
   .nav-links, .nav-avail, .nav-location { display: none; }
   .nav-burger { display: flex; }
 
-  .hero-bottom { flex-direction: column; gap: 2rem; }
+  .hero { padding: 6rem 1.25rem 2.5rem; }
+  .hero-bottom { flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; }
   .hero-left { max-width: 100%; }
   .hero-right { align-self: center; }
 
-  .hero-profession { font-size: 0.88rem; padding: 0.5rem 1.1rem; }
+  .hero-profession { font-size: 0.85rem; padding: 0.45rem 1rem; margin-bottom: 1rem; }
+  .hero-role { margin-bottom: 0.75rem; }
 
-  .hero-avatar-wrap { width: 160px; height: 160px; }
-  .ls-bk { font-size: 2.8rem; }
-  .wd-top { font-size: 1.4rem; }
+  .hero-avatar-wrap { width: 140px; height: 140px; }
+  .ls-bk { font-size: 2.6rem; }
+  .wd-top { font-size: 1.35rem; }
   .wd-bot { font-size: 0.44rem; }
   .floating-tag { display: none; }
 
@@ -1478,14 +1480,17 @@ body::after {
 }
 
 @media (max-width: 480px) {
-  .hero-name { font-size: clamp(3rem, 15vw, 4rem); }
-  .hero-profession { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
-  .hero-bio { font-size: 0.92rem; }
+  .hero { padding: 5rem 1rem 2rem; }
+  .hero-name { font-size: clamp(2rem, 11.5vw, 2.8rem); }
+  .hero-profession { font-size: 0.75rem; padding: 0.4rem 0.85rem; margin-bottom: 0.85rem; }
+  .hero-role { font-size: 0.65rem; margin-bottom: 0.65rem; }
+  .hero-bio { font-size: 0.88rem; margin-bottom: 1.25rem; }
+  .hero-bottom { gap: 1.25rem; margin-top: 1.25rem; }
 
-  .hero-avatar-wrap { width: 140px; height: 140px; }
-  .ls-bk { font-size: 2.4rem; }
-  .wd-top { font-size: 1.2rem; }
-  .wd-sep { --sep-w: 30px; }
+  .hero-avatar-wrap { width: 110px; height: 110px; }
+  .ls-bk { font-size: 2rem; }
+  .wd-top { font-size: 1rem; }
+  .wd-sep { width: 28px; }
 
   .skills-grid { grid-template-columns: 1fr; }
   .skill-card.sk-featured,
