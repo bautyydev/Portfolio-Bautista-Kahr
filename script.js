@@ -378,7 +378,7 @@ function initLogoSplit() {
       const W = wrap.offsetWidth;
       if (!toggled) {
         wrap.classList.add('revealed');
-        animateTo(W * 0.12, false, null);
+        animateTo(W * 0.12, false, () => { line.style.opacity = '0'; });
         toggled = true;
       } else {
         wrap.classList.remove('revealed');
