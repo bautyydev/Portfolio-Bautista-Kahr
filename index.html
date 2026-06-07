@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bautista Kahr — Developer Web</title>
+  <meta name="description" content="Portfolio de Bautista Kahr, estudiante de Ingeniería en Informática en UADE. Diseño y desarrollo de sitios web.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Ambient blobs -->
+  <div class="ambient" aria-hidden="true">
+    <div class="amb-blob amb-1"></div>
+    <div class="amb-blob amb-2"></div>
+    <div class="amb-blob amb-3"></div>
+  </div>
+
+  <!-- Interactive particle canvas -->
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#inicio" class="nav-logo">BK.</a>
+      <div class="nav-links">
+        <a href="#proyectos" class="nl">Proyectos</a>
+        <a href="#sobre"     class="nl">Sobre mí</a>
+        <a href="#contacto"  class="nl">Contacto</a>
+      </div>
+      <div class="nav-right">
+        <a href="#contacto" class="nav-avail">
+          <span class="avail-pulse"></span>
+          Disponible
+        </a>
+        <span class="nav-location" id="navLocation">Buenos Aires · --:--</span>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#proyectos" onclick="closeMobileMenu()">Proyectos</a>
+    <a href="#sobre"     onclick="closeMobileMenu()">Sobre mí</a>
+    <a href="#contacto"  onclick="closeMobileMenu()">Contacto</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-inner">
+
+      <div class="hero-profession">
+        <span class="hp-dot"></span>
+        Diseñador &amp; Desarrollador Web
+      </div>
+      <p class="hero-role">Ing. en Informática · UADE · Buenos Aires</p>
+
+      <h1 class="hero-name">
+        <span class="hn-line" id="hn1">BAUTISTA</span>
+        <span class="hn-line" id="hn2">KAHR.</span>
+      </h1>
+
+      <div class="hero-bottom">
+        <div class="hero-left">
+          <p class="hero-bio">Construyo interfaces que conectan personas con tecnología. Apasionado por el código, el diseño y todo lo que pasa en el medio.</p>
+          <div class="hero-actions">
+            <a href="#proyectos" class="btn-main" id="heroCta1">
+              <span class="btn-txt">Ver proyectos</span>
+              <span class="btn-arr">→</span>
+            </a>
+            <a href="#sobre" class="btn-ghost" id="heroCta2">
+              <span>Sobre mí</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-avatar-wrap">
+            <div class="hero-avatar">
+              <div class="avatar-ring"></div>
+              <div class="avatar-inner" id="avatarSplit">
+              <span class="ls-bk">BK</span>
+              <span class="ls-wd">
+                <span class="wd-top">WEB</span>
+                <span class="wd-sep"></span>
+                <span class="wd-bot">DESIGNER</span>
+              </span>
+              <span class="ls-line" aria-hidden="true"></span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TECH STRIP -->
+  <div class="tech-strip" aria-hidden="true">
+    <div class="tech-track" id="techTrack">
+      <span>HTML &amp; CSS</span><span class="ts-sep">·</span>
+      <span>JavaScript</span><span class="ts-sep">·</span>
+      <span>React</span><span class="ts-sep">·</span>
+      <span>Node.js</span><span class="ts-sep">·</span>
+      <span>Python</span><span class="ts-sep">·</span>
+      <span>Git</span><span class="ts-sep">·</span>
+      <span>Figma</span><span class="ts-sep">·</span>
+      <span>MySQL</span><span class="ts-sep">·</span>
+      <span>REST APIs</span><span class="ts-sep">·</span>
+      <span>UI Design</span><span class="ts-sep">·</span>
+      <span>HTML &amp; CSS</span><span class="ts-sep">·</span>
+      <span>JavaScript</span><span class="ts-sep">·</span>
+      <span>React</span><span class="ts-sep">·</span>
+      <span>Node.js</span><span class="ts-sep">·</span>
+      <span>Python</span><span class="ts-sep">·</span>
+      <span>Git</span><span class="ts-sep">·</span>
+      <span>Figma</span><span class="ts-sep">·</span>
+      <span>MySQL</span><span class="ts-sep">·</span>
+      <span>REST APIs</span><span class="ts-sep">·</span>
+      <span>UI Design</span><span class="ts-sep">·</span>
+    </div>
+  </div>
+
+  <!-- SKILLS BENTO -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <h2 class="section-title sr" style="--d:0">Stack</h2>
+      <div class="skills-grid">
+        <div class="skill-card sr" style="--d:1">
+          <div class="sk-icon"><img src="https://cdn.simpleicons.org/html5/f0f0fa" alt="HTML5" width="30" height="30" loading="lazy"></div>
+          <div class="sk-name">HTML &amp; CSS</div>
+          <div class="sk-note">Frontend base</div>
+        </div>
+        <div class="skill-card sk-featured sr" style="--d:2">
+          <div class="sk-icon"><img src="https://cdn.simpleicons.org/javascript/f0f0fa" alt="JavaScript" width="36" height="36" loading="lazy"></div>
+          <div class="sk-name">JavaScript</div>
+          <div class="sk-note">ES2024+ · Vanilla y frameworks</div>
+        </div>
+        <div class="skill-card sr" style="--d:3">
+          <div class="sk-icon"><img src="https://cdn.simpleicons.org/react/f0f0fa" alt="React" width="30" height="30" loading="lazy"></div>
+          <div class="sk-name">React</div>
+          <div class="sk-note">SPA y componentes</div>
+        </div>
+        <div class="skill-card sr" style="--d:4">
+          <div class="sk-icon"><img src="https://cdn.simpleicons.org/nodedotjs/f0f0fa" alt="Node.js" width="30" height="30" loading="lazy"></div>
+          <div class="sk-name">Node.js</div>
+          <div class="sk-note">Backend y servidores</div>
+        </div>
+        <div class="skill-card sr" style="--d:5">
+          <div class="sk-icon"><img src="https://cdn.simpleicons.org/python/f0f0fa" alt="Python" width="30" height="30" loading="lazy"></div>
+          <div class="sk-name">Python</div>
+          <div class="sk-note">Scripts y automatización</div>
+        </div>
+        <div class="skill-card sk-wide sr" style="--d:6">
+          <div class="sk-icon"><img src="https://cdn.simpleicons.org/git/f0f0fa" alt="Git" width="30" height="30" loading="lazy"></div>
+          <div class="sk-name">Git &amp; GitHub</div>
+          <div class="sk-note">Control de versiones y colaboración</div>
+        </div>
+        <div class="skill-card sr" style="--d:7">
+          <div class="sk-icon"><img src="https://cdn.simpleicons.org/figma/f0f0fa" alt="Figma" width="30" height="30" loading="lazy"></div>
+          <div class="sk-name">Figma</div>
+          <div class="sk-note">UI · UX Design</div>
+        </div>
+        <div class="skill-card sr" style="--d:8">
+          <div class="sk-icon"><img src="https://cdn.simpleicons.org/mysql/f0f0fa" alt="MySQL" width="30" height="30" loading="lazy"></div>
+          <div class="sk-name">MySQL</div>
+          <div class="sk-note">Bases de datos</div>
+        </div>
+        <div class="skill-card sk-wide sr" style="--d:9">
+          <div class="sk-icon"><img src="https://cdn.simpleicons.org/postman/f0f0fa" alt="REST APIs" width="30" height="30" loading="lazy"></div>
+          <div class="sk-name">REST APIs</div>
+          <div class="sk-note">Integración y consumo de servicios</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos" class="section projects-section">
+    <div class="container">
+      <h2 class="section-title sr" style="--d:0">Proyectos</h2>
+      <p class="section-sub sr" style="--d:1">Sitios que construí, cosas que aprendí.</p>
+      <div class="projects-grid" id="projectsGrid"></div>
+      <div class="projects-cta sr" style="--d:4">
+        <a href="#contacto" class="btn-main magnetic">
+          <span class="btn-txt">Trabajemos juntos</span>
+          <span class="btn-arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre" class="section about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title sr" style="--d:0">Sobre mí</h2>
+          <p class="about-bio sr" style="--d:1">Soy Bautista, estudiante de Ingeniería en Informática en la UADE. Desde hace varios años construyo sitios web combinando código y diseño para crear experiencias que realmente funcionan.</p>
+          <p class="about-bio sr" style="--d:2">Me interesa tanto la parte técnica como la visual: escribir JavaScript limpio y también pensar en la jerarquía tipográfica. El punto donde el sistema y la estética se encuentran es donde más disfruto trabajar.</p>
+          <div class="about-stats sr" style="--d:3">
+            <div class="astat">
+              <div class="astat-top">
+                <span class="astat-num" data-target="1">0</span><span class="astat-suf">+</span>
+              </div>
+              <span class="astat-label">años codificando</span>
+            </div>
+            <div class="astat">
+              <div class="astat-top">
+                <span class="astat-num" data-target="4">0</span><span class="astat-suf">+</span>
+              </div>
+              <span class="astat-label">proyectos web</span>
+            </div>
+            <div class="astat">
+              <div class="astat-top">
+                <span class="astat-num" data-target="10">0</span><span class="astat-suf">+</span>
+              </div>
+              <span class="astat-label">clientes satisfechos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-code sr" style="--d:2">
+          <div class="code-card">
+            <div class="code-header">
+              <span class="code-dot cd1"></span>
+              <span class="code-dot cd2"></span>
+              <span class="code-dot cd3"></span>
+              <span class="code-filename">bautista.js</span>
+            </div>
+<pre class="code-body"><code><span class="ck">const</span> <span class="cv">bautista</span> <span class="co">=</span> {
+  <span class="cp">nombre</span><span class="co">:</span>     <span class="cs">"Bautista Kahr"</span>,
+  <span class="cp">carrera</span><span class="co">:</span>    <span class="cs">"Ing. en Informática"</span>,
+  <span class="cp">uni</span><span class="co">:</span>        <span class="cs">"UADE"</span>,
+  <span class="cp">ciudad</span><span class="co">:</span>     <span class="cs">"Buenos Aires"</span>,
+  <span class="cp">stack</span><span class="co">:</span>      [
+    <span class="cs">"JavaScript"</span>, <span class="cs">"React"</span>,
+    <span class="cs">"Node.js"</span>,    <span class="cs">"Python"</span>
+  ],
+  <span class="cp">disponible</span><span class="co">:</span> <span class="cb">true</span>,
+  <span class="cp">cafe</span><span class="co">:</span>       <span class="cb">Infinity</span>
+};<span class="code-cursor"></span></code></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section contact-section">
+    <div class="container">
+      <div class="contact-inner sr" style="--d:0">
+        <h2 class="contact-title">
+          <span>Tenés un</span>
+          <em>proyecto?</em>
+        </h2>
+        <p class="contact-sub">Estoy disponible para proyectos freelance, colaboraciones y oportunidades laborales. Hablemos.</p>
+        <a href="mailto:bautykahr@gmail.com" class="contact-email magnetic">bautykahr@gmail.com</a>
+        <div class="contact-links">
+          <a href="https://wa.me/5491144388949" target="_blank" class="btn-ghost magnetic"><span>WhatsApp →</span></a>
+          <a href="https://github.com/bautyydev" target="_blank" class="btn-ghost magnetic"><span>GitHub →</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">Bautista Kahr</span>
+        <span class="footer-built">Construido con codigo y cafe — Buenos Aires, 2026</span>
+        <a href="#inicio" class="footer-top">↑ Inicio</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
