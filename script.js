@@ -331,9 +331,9 @@ function initLogoSplit() {
     const W  = wrap.offsetWidth;
     const H  = wrap.offsetHeight;
     const sk = W * SKEW;
-    bk.style.clipPath  = `polygon(0 0, ${x + sk}px 0, ${x - sk}px ${H}px, 0 ${H}px)`;
-    wd.style.clipPath  = `polygon(${x + sk}px 0, ${W * 3}px 0, ${W * 3}px ${H}px, ${x - sk}px ${H}px)`;
-    line.style.left    = x + 'px';
+    bk.style.clipPath = `polygon(0 0, ${x + sk}px 0, ${x - sk}px ${H}px, 0 ${H}px)`;
+    wd.style.clipPath = `polygon(${x + sk}px 0, ${W * 3}px 0, ${W * 3}px ${H}px, ${x - sk}px ${H}px)`;
+    line.style.left   = x + 'px';
   }
 
   function cancelAnim() {
@@ -348,64 +348,63 @@ function initLogoSplit() {
     currentX = null;
   }
 
-  function startReveal() {
+  function animateTo(targetX, fadeOut, onDone) {
     cancelAnim();
-    line.style.opacity = '';
-    wrap.classList.add('revealed');
-  }
-
-  function exitReveal() {
-    wrap.classList.remove('revealed');
-    cancelAnim();
-    if (currentX === null) return;
-
     const W         = wrap.offsetWidth;
-    const startX    = currentX;
+    const startX    = currentX !== null ? currentX : W;
     const startTime = performance.now();
-    const duration  = 480;
+    const duration  = 460;
+    if (fadeOut) line.style.opacity = '0.75';
 
-    line.style.opacity = '0.75';
-
-    function animate(now) {
-      const t      = Math.min((now - startTime) / duration, 1);
-      const eased  = 1 - Math.pow(1 - t, 3);
-      const x      = startX + (W - startX) * eased;
-
-      update(x);
-      line.style.opacity = String(0.75 * (1 - eased));
-
-      if (t < 1) {
-        animFrame = requestAnimationFrame(animate);
-      } else {
-        animFrame = null;
-        reset();
-      }
+    function tick(now) {
+      const t     = Math.min((now - startTime) / duration, 1);
+      const ease  = 1 - Math.pow(1 - t, 3);
+      update(startX + (targetX - startX) * ease);
+      if (fadeOut) line.style.opacity = String(0.75 * (1 - ease));
+      if (t < 1) { animFrame = requestAnimationFrame(tick); }
+      else        { animFrame = null; if (onDone) onDone(); }
     }
-
-    animFrame = requestAnimationFrame(animate);
+    animFrame = requestAnimationFrame(tick);
   }
 
-  /* Mouse events */
-  wrap.addEventListener('mouseenter', startReveal);
-  wrap.addEventListener('mousemove', e => {
-    cancelAnim();
-    const r = wrap.getBoundingClientRect();
-    update(e.clientX - r.left);
-  });
-  wrap.addEventListener('mouseleave', exitReveal);
+  const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
-  /* Touch events */
-  wrap.addEventListener('touchstart', e => {
-    startReveal();
-    const r = wrap.getBoundingClientRect();
-    update(e.touches[0].clientX - r.left);
-  }, { passive: true });
-  wrap.addEventListener('touchmove', e => {
-    cancelAnim();
-    const r = wrap.getBoundingClientRect();
-    update(e.touches[0].clientX - r.left);
-  }, { passive: true });
-  wrap.addEventListener('touchend', exitReveal);
+  if (isTouch) {
+    /* ── MOBILE: tap toggle ── */
+    let toggled = false;
+
+    wrap.addEventListener('touchend', e => {
+      e.preventDefault();
+      const W = wrap.offsetWidth;
+      if (!toggled) {
+        wrap.classList.add('revealed');
+        animateTo(W * 0.12, false, null);
+        toggled = true;
+      } else {
+        wrap.classList.remove('revealed');
+        animateTo(W, true, reset);
+        toggled = false;
+      }
+    }, { passive: false });
+
+  } else {
+    /* ── DESKTOP: mouse drag ── */
+    wrap.addEventListener('mouseenter', () => {
+      cancelAnim();
+      line.style.opacity = '';
+      wrap.classList.add('revealed');
+    });
+    wrap.addEventListener('mousemove', e => {
+      cancelAnim();
+      const r = wrap.getBoundingClientRect();
+      update(e.clientX - r.left);
+    });
+    wrap.addEventListener('mouseleave', () => {
+      wrap.classList.remove('revealed');
+      if (currentX === null) return;
+      animateTo(wrap.offsetWidth, true, reset);
+    });
+  }
 }
 
 /* ── Scroll reveal ── */
