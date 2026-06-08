@@ -36,7 +36,7 @@ const PROJECTS = [
   {
     title:      "Malek Jewelry",
     desc:       "Landing page editorial para marca de accesorios. Diseño dark con tipografía dorada, slider de productos animado con GSAP y sección de promociones.",
-    tags:       ["HTML", "CSS", "JavaScript", "GSAP"],
+    tags:       ["HTML", "CSS", "JavaScript"],
     img:        "img-malek.png",
     url:        "#contacto",
     urlDisplay: "malekjewelry",
