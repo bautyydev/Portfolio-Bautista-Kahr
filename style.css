@@ -871,7 +871,7 @@ body::after {
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 300px 310px;
+  grid-template-rows: 300px 310px 340px;
   gap: 1rem;
   margin-top: 3.5rem;
 }
